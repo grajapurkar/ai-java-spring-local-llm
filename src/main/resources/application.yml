@@ -8,3 +8,8 @@ spring:
 ai:
   embedding:
     dimension: 384
+  loader:
+    # Set to false to prevent startup ingestion of policies (fast dev iteration)
+    enabled: true
+    # Max lines from policies.txt to load on startup. 0 = load all.
+    maxLines: 0

@@ -529,6 +529,28 @@ curl --location 'http://localhost:8080/api/chat' \
 
 ---
 
+## Developer quickstart (dev profile)
+
+- The project includes a `dev` profile that limits policy ingestion for faster local iteration. `src/main/resources/application-dev.yml` contains overrides for `ai.loader.enabled` and `ai.loader.maxLines` (defaults: enabled=true, maxLines=20).
+
+- Recommended (Windows PowerShell): use the helper script which builds the project, starts Spring Boot with the `dev` profile, waits for startup/log markers and issues a sample POST.
+
+```powershell
+./scripts/run-dev.ps1
+```
+
+- Manual alternative:
+
+```powershell
+mvn -Dspring-boot.run.profiles=dev spring-boot:run
+```
+
+- Notes:
+  - The helper script waits for either the Spring Boot "Started AiPocApplication" marker or the loader marker "Policies loaded into vector store". If the loader is disabled the script will still proceed once Spring Boot has started.
+  - To completely skip ingestion (fastest start), set `ai.loader.enabled=false` in `application-dev.yml` or override via JVM property: `-Dai.loader.enabled=false`.
+  - To change the sample size loaded at startup set `ai.loader.maxLines` in `application-dev.yml`.
+
+
 # 18. Unit Testing
 
 Run tests:
