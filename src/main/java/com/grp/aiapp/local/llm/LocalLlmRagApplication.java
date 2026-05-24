@@ -9,4 +9,5 @@ public class LocalLlmRagApplication {
     public static void main(String[] args) {
         SpringApplication.run(LocalLlmRagApplication.class, args);
     }
+
 }
