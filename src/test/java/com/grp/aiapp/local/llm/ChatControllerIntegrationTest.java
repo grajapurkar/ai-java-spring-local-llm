@@ -48,7 +48,6 @@ public class ChatControllerIntegrationTest {
         Map<String, String> req = Map.of("question", "hello");
 
         ResponseEntity<String> resp = restTemplate.postForEntity("/api/chat", req, String.class);
-
         assertEquals(HttpStatus.OK, resp.getStatusCode());
         assertTrue(resp.getBody() != null && resp.getBody().contains("LOCAL AI RESPONSE"));
     }
